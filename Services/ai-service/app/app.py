@@ -13,7 +13,7 @@ import io
 from pymongo import MongoClient
 
 # Подключение к MongoDB
-mongo_client = MongoClient("mongodb://mongo:mongo@localhost:27017/mongo")
+mongo_client = MongoClient("mongodb://mongo:mongo@mongo:27017/mongo")
 db = mongo_client["animal_classification"]
 result_collection = db["prediction_results"]
 
