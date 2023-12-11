@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animal Classification</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        text-align: center;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    select, input[type="file"] {
+        padding: 8px;
+        margin-bottom: 15px;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    h2 {
+        margin-top: 20px;
+        color: #333;
+    }
+
+    p {
+        margin: 10px 0;
+    }
+</style>
+
+</head>
+<body>
+    <h1>Animal Classification</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <label for="file">Choose an image:</label>
+        <input type="file" name="file" accept=".jpg, .jpeg, .png" required><br>
+        <label for="selected_animal">Select the animal:</label>
+        <select name="selected_animal" required>
+            <option value="dog">Dog</option>
+            <option value="horse">Horse</option>
+            <option value="elephant">Elephant</option>
+            <option value="butterfly">Butterfly</option>
+            <option value="chicken">Chicken</option>
+            <option value="cat">Cat</option>
+            <option value="cow">Cow</option>
+            <option value="sheep">Sheep</option>
+            <option value="spider">Spider</option>
+            <option value="squirrel">Squirrel</option>
+        </select><br>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if result %}
+        <h2>Result:</h2>
+        <p>Predicted Animal: {{ result.label }}</p>
+        <p>Selected Animal: {{ result.selected_animal }}</p>
+        <p>Correct Prediction: {{ result.correct }}</p>
+    {% endif %}
+
+    {% if total_count is defined and correct_count is defined %}
+        <h2>Statistics:</h2>
+        <p>Total Predictions: {{ total_count }}</p>
+        <p>Correct Predictions: {{ correct_count }}</p>
+        <p>Accuracy: {{ (correct_count / total_count * 100) if total_count > 0 else 0 }}%</p>
+    {% endif %}
+
+</body>
+</html>

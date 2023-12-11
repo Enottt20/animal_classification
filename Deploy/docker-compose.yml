@@ -1,0 +1,28 @@
+version: "2.0"
+
+services:
+  mongo:
+    image: mongo:7.0
+    volumes:
+      - mongo-data:/data/db
+      - ./mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: mongo
+      MONGO_USER: ${MONGO_USER:-mongo}
+      MONGO_PASSWORD: ${MONGO_PASSWORD:-mongo}
+    
+  ai-service:
+    build:
+      context: ../Services/ai-service
+      dockerfile: ./Dockerfile
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongo
+    environment:
+      MONGO_DSN: ${MONGO_DSN:-mongodb://mongo:mongo@mongo:27017/mongo}
+
+volumes:
+  mongo-data:
