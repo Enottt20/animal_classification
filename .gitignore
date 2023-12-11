@@ -125,6 +125,7 @@ ENV/
 env.bak/
 venv.bak/
 idea.bak/
+animalsv2.keras
 
 # Spyder project settings
 .spyderproject
