@@ -1,2 +1,5 @@
-Перед началом работы необходимо распаковать
-модельку animalsv2.keras в [**ai-service**](Services/ai-service/)
+Для запуска сервиса нужно перейти в [**Deploy**](Deploy/)
+И прописать 
+```
+docker compose up -d
+```
